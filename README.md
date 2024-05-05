@@ -21,3 +21,5 @@
 6. 페이징처리(/board/paging)
    - /board/paging?page=2 <- 이걸로 하자
    - /board/paging/2
+
+인증기능 구현중
