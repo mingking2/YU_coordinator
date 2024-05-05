@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Login</title>
+</head>
+<body>
+<h2>Login</h2>
+<form action="/login" th:action th:object="${loginForm}" method="post">
+  <div>
+    <label for="username">Username:</label>
+    <input type="text" id="username" th:action th:field="*{username}" required autofocus/>
+  </div>
+  <div>
+    <label for="password">Password:</label>
+    <input type="password" id="password"  th:action th:field="*{password}" required/>
+  </div>
+  <button type="submit">Login</button>
+</form>
+<button onclick="signupReq()">회원가입</button>
+<a th:href="@{/signup}">회원가입</a>
+</body>
+<script>
+  const signupReq = () => {
+    location.href = "/signup"
+  }
+</script>
+</html>
