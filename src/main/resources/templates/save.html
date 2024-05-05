@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>save</title>
+</head>
+<body>
+    <form action="/board/save" th:action th:object="${board}" method="post">
+        writer: <input type="text"  th:action th:field="*{boardWriter}"> <br>
+        pass: <input type="text"  th:action th:field="*{boardPass}"> <br>
+        title: <input type="text"  th:action th:field="*{boardTitle}"> <br>
+        contents: <textarea  th:action th:field="*{boardContents}" cols="30" rows="10"></textarea> <br>
+        <input type="submit" value="글작성">
+    </form>
+</body>
+</html>
