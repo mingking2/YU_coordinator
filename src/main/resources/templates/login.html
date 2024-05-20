@@ -3,9 +3,10 @@
 <head>
   <meta charset="UTF-8">
   <title>Login</title>
+  <link rel="stylesheet" type="text/css" href="../static/loginStyle.css">
 </head>
 <body>
-<h2>Login</h2>
+<h1>YU coordinator</h1>
 <form action="/login" th:action th:object="${loginForm}" method="post">
   <div>
     <label for="username">Username:</label>
@@ -17,12 +18,6 @@
   </div>
   <button type="submit">Login</button>
 </form>
-<button onclick="signupReq()">회원가입</button>
 <a th:href="@{/signup}">회원가입</a>
 </body>
-<script>
-  const signupReq = () => {
-    location.href = "/signup"
-  }
-</script>
 </html>

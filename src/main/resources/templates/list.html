@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>list</title>
+    <link rel="stylesheet" type="text/css" href="../static/listStyle.css">
 </head>
 <body>
     <button onclick="homeReq()">홈으로</button>
@@ -22,10 +23,6 @@
             <td th:text="${board.boardHits}"></td>
         </tr>
     </table>
+    <script type="application/javascript" src="../static/path.js"></script>
 </body>
-<script>
-    const homeReq = () => {
-        location.href = "/";
-    }
-</script>
 </html>
