@@ -21,9 +21,6 @@ public class BoardEntity extends BaseEntity{
     private String boardWriter;
 
     @Column
-    private String boardPass;
-
-    @Column
     private String boardTitle;
 
     @Column(length = 500)
@@ -35,7 +32,6 @@ public class BoardEntity extends BaseEntity{
     public static BoardEntity toSaveEntity(BoardDTO boardDTO) {
         BoardEntity boardEntity = new BoardEntity();
         boardEntity.setBoardWriter(boardDTO.getBoardWriter());
-        boardEntity.setBoardPass(boardDTO.getBoardPass());
         boardEntity.setBoardTitle(boardDTO.getBoardTitle());
         boardEntity.setBoardContents(boardDTO.getBoardContents());
         boardEntity.setBoardHits(0);
@@ -46,7 +42,6 @@ public class BoardEntity extends BaseEntity{
         BoardEntity boardEntity = new BoardEntity();
         boardEntity.setId(boardDTO.getId());
         boardEntity.setBoardWriter(boardDTO.getBoardWriter());
-        boardEntity.setBoardPass(boardDTO.getBoardPass());
         boardEntity.setBoardTitle(boardDTO.getBoardTitle());
         boardEntity.setBoardContents(boardDTO.getBoardContents());
         boardEntity.setBoardHits(boardDTO.getBoardHits());
