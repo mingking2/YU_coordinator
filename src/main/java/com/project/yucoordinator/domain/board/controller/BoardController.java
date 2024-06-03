@@ -4,6 +4,9 @@ import com.project.yucoordinator.domain.board.dto.CreateReq;
 import com.project.yucoordinator.domain.board.dto.UpdateReq;
 import com.project.yucoordinator.domain.board.entity.BoardEntity;
 import com.project.yucoordinator.domain.board.service.BoardService;
+import com.project.yucoordinator.domain.info.entity.CSEInfoEntity;
+import com.project.yucoordinator.domain.info.entity.YUInfoEntity;
+import com.project.yucoordinator.domain.info.service.InfoService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -18,6 +21,7 @@ import java.util.List;
 @RequestMapping("/board")
 public class BoardController {
     private final BoardService boardService;
+    private final InfoService infoService;
 
     @GetMapping("/create")
     public String createForm(@ModelAttribute("board") CreateReq req) {
@@ -29,7 +33,7 @@ public class BoardController {
         System.out.println("req = " + req);
         System.out.println(userDetails.getUsername());
         boardService.createBoard(userDetails, req);
-        return "home";
+        return "redirect:/";
     }
 
     @GetMapping("/update/{id}")
@@ -49,7 +53,11 @@ public class BoardController {
     @GetMapping("/list")
     public String viewBoard(Model model, @AuthenticationPrincipal UserDetails userDetails) {
         List<BoardEntity> allBoardEntity = boardService.findAllBoards(userDetails);
+        List<YUInfoEntity> allYUInfoEntity = (List<YUInfoEntity>) infoService.findbyAllInfos(0);
+        List<CSEInfoEntity> allCSEInfoEntity = (List<CSEInfoEntity>) infoService.findbyAllInfos(1);
         model.addAttribute("boardList", allBoardEntity);
+        model.addAttribute("infoList", allYUInfoEntity);
+        model.addAttribute("CSEinfoList", allCSEInfoEntity);
         return "list";
     }
 
