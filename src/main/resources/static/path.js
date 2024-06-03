@@ -13,14 +13,10 @@ const homeReq = () => {
     location.href = "/";
 }
 
-const saveReq = () => {
-    location.href = "/board/save";
+const createReq = () => {
+    location.href = "/board/create";
 }
 
 const listReq = () => {
-    location.href = "/board/";
-}
-
-const pagingReq = () => {
-    location.href = "/board/paging";
+    location.href = "/board/list";
 }
