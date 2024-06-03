@@ -1,0 +1,64 @@
+package com.project.yucoordinator.domain.info.service;
+
+import com.project.yucoordinator.domain.info.entity.CSEInfoEntity;
+import com.project.yucoordinator.domain.info.entity.YUInfoEntity;
+import com.project.yucoordinator.domain.info.repository.CSEInfoRepository;
+import com.project.yucoordinator.domain.info.repository.YUInfoRepository;
+import lombok.RequiredArgsConstructor;
+import org.jsoup.Jsoup;
+import org.jsoup.nodes.Document;
+import org.jsoup.nodes.Element;
+import org.jsoup.select.Elements;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+
+import java.io.IOException;
+import java.util.List;
+
+@Service
+@RequiredArgsConstructor
+public class InfoService {
+    private final YUInfoRepository yuInfoRepository;
+    private final CSEInfoRepository cseInfoRepository;
+
+    public void saveInfo(String givenUrl, int flag) throws IOException {
+        Document doc = Jsoup.connect(givenUrl).get();
+        Elements infoElements = doc.select("table.board-table");
+
+        for (Element element: infoElements) {
+            Elements links = element.select("div.b-title-box");
+            for (Element link : links) {
+                String titleAll = link.select("a").attr("title");
+                String url = link.select("a").attr("href");
+                if(!url.startsWith("http"))
+                    url = givenUrl + url;
+
+
+                String substring = titleAll.substring(0, titleAll.length()-6);
+                if (flag == 0) {
+                    YUInfoEntity info = YUInfoEntity.builder()
+                            .title(substring)
+                            .url(url)
+                            .build();
+                    if(yuInfoRepository.findByTitle(info.getTitle()).isEmpty())
+                        yuInfoRepository.save(info);
+                } else if (flag == 1) {
+                    CSEInfoEntity info = CSEInfoEntity.builder()
+                            .title(substring)
+                            .url(url)
+                            .build();
+                    if(cseInfoRepository.findByTitle(info.getTitle()).isEmpty())
+                        cseInfoRepository.save(info);
+                }
+            }
+        }
+    }
+
+    public List<?> findbyAllInfos(int flag) {
+        if (flag == 0)
+            return yuInfoRepository.findAll();
+        else
+            return cseInfoRepository.findAll();
+    }
+
+}
