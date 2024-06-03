@@ -33,8 +33,4 @@ public class UserController {
         return "login";
     }
 
-    @GetMapping("/")
-    public String home() {
-        return "home";
-    }
 }
