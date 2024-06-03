@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>save</title>
+    <link rel="stylesheet" type="text/css" href="../static/createStyle.css">
+</head>
+<body>
+    <form th:action="@{/board/create}" th:object="${board}" method="post">
+        title: <input type="text" th:field="*{title}" required> <br>
+        url: <input type="text" th:field="*{url}" required> <br>
+        contents: <textarea th:field="*{content}" cols="30" rows="10" required></textarea> <br>
+        <input type="submit" value="글작성">
+    </form>
+</body>
+</html>

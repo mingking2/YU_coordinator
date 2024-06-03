@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>home</title>
+    <link rel="stylesheet" type="text/css" href="../static/homeStyle.css">
+</head>
+<body>
+<h1>YU coordinator</h1>
+<button onclick="createReq()">글작성</button>
+<button onclick="listReq()">글목록</button>
+<form th:action="@{/logout}" method="post">
+    <button type="submit">로그아웃</button>
+</form>
+<script type="application/javascript" src="../static/path.js"></script>
+</body>
+</html>
