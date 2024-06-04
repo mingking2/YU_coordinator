@@ -23,17 +23,17 @@ public class ApplicationStartupRunner {
         infoService.saveInfo(mainUrl, 0);
         infoService.saveInfo(cseUrl, 1);
 
-        List<YUInfoEntity> infoEntityList1 = (List<YUInfoEntity>) infoService.findbyAllInfos(0);
-        List<CSEInfoEntity> infoEntityList2 = (List<CSEInfoEntity>) infoService.findbyAllInfos(1);
-
-        for (YUInfoEntity info : infoEntityList1) {
-            System.out.println("info1.getTitle() = " + info.getTitle());
-            System.out.println("info1.getUrl() = " + info.getUrl());
-        }
-
-        for (CSEInfoEntity info : infoEntityList2) {
-            System.out.println("info2.getTitle() = " + info.getTitle());
-            System.out.println("info2.getUrl() = " + info.getUrl());
-        }
+//        List<YUInfoEntity> infoEntityList1 = (List<YUInfoEntity>) infoService.findAllInfos(0);
+//        List<CSEInfoEntity> infoEntityList2 = (List<CSEInfoEntity>) infoService.findAllInfos(1);
+//
+//        for (YUInfoEntity info : infoEntityList1) {
+//            System.out.println("info1.getTitle() = " + info.getTitle());
+//            System.out.println("info1.getUrl() = " + info.getUrl());
+//        }
+//
+//        for (CSEInfoEntity info : infoEntityList2) {
+//            System.out.println("info2.getTitle() = " + info.getTitle());
+//            System.out.println("info2.getUrl() = " + info.getUrl());
+//        }
     }
 }
