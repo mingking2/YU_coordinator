@@ -1,71 +1,85 @@
-/* loginStyle.css */
+/* 전체 페이지 기본 설정 */
 body {
-    font-family: Arial, sans-serif;
-    background-color: #f0f0f0;
-    margin: 0;
-    padding: 0;
+    font-family: 'Arial', sans-serif;
+    background-color: #f0f2f5;
     display: flex;
-    flex-direction: column;
     justify-content: center;
     align-items: center;
     height: 100vh;
+    margin: 0;
 }
 
 .login-container {
-    width: 300px;
-    padding: 20px;
-    background-color: #fff;
+    background-color: #ffffff;
+    padding: 40px;
     border-radius: 10px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     text-align: center;
+    width: 300px;
 }
 
-h1 {
+.login-container h1 {
+    color: #0056b3;
     margin-bottom: 20px;
-    color: #007bff;
 }
 
-form {
-    display: flex;
-    flex-direction: column;
-}
-
-label {
-    margin-bottom: 5px;
-    color: #333;
-}
-
-input {
+/* 입력 필드 스타일 */
+input[type="text"], input[type="password"] {
+    width: 100%;
     padding: 10px;
-    margin-bottom: 10px;
+    margin: 10px 0;
     border: 1px solid #ccc;
     border-radius: 5px;
+    box-sizing: border-box;
 }
 
+/* 라벨 스타일 */
+label {
+    float: left;
+    font-size: 14px;
+}
+
+/* 로그인 버튼 스타일 */
 button[type="submit"] {
+    width: 100%;
     background-color: #007bff;
-    color: #fff;
+    color: white;
+    padding: 10px;
     border: none;
     border-radius: 5px;
-    padding: 10px 40px;
-    font-size: 16px;
     cursor: pointer;
-    transition: background-color 0.3s ease;
+    font-size: 16px;
 }
 
 button[type="submit"]:hover {
     background-color: #0056b3;
 }
 
+/* 하단 링크 스타일 */
 a {
-    text-align: center;
-    display: block;
-    margin-top: 10px;
-    text-decoration: none;
+    display: inline-block;
+    margin-top: 20px;
     color: #007bff;
-    transition: color 0.3s ease;
+    text-decoration: none;
+    font-size: 14px;
 }
 
 a:hover {
-    color: #0056b3;
+    text-decoration: underline;
+}
+
+/* 추가: 회원가입 버튼 스타일 */
+.signup-btn {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: white;
+    border-radius: 5px;
+    text-decoration: none;
+    font-size: 14px;
+    margin-top: 10px;
+}
+
+.signup-btn:hover {
+    background-color: #0056b3;
 }

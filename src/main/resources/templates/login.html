@@ -6,18 +6,23 @@
   <link rel="stylesheet" type="text/css" href="../static/loginStyle.css">
 </head>
 <body>
-<h1>YU coordinator</h1>
-<form action="/login" th:action th:object="${loginForm}" method="post">
-  <div>
-    <label for="name">Username:</label>
-    <input type="text" id="name" th:action th:field="*{username}" required autofocus/>
+<div class="login-container">
+  <h1>YU coordinator</h1>
+  <div th:if="${param.error}">
+    <p style="color: red;">입력한 아이디와 비밀번호가 일치하지 않습니다.</p>
   </div>
-  <div>
-    <label for="password">Password:</label>
-    <input type="password" id="password"  th:action th:field="*{password}" required/>
-  </div>
-  <button type="submit">Login</button>
-</form>
-<a th:href="@{/signup}">회원가입</a>
+  <form action="/login" th:action th:object="${loginForm}" method="post">
+    <div>
+      <label for="name">Id:</label>
+      <input type="text" id="name" th:field="*{username}" required autofocus/>
+    </div>
+    <div>
+      <label for="password">Password:</label>
+      <input type="password" id="password" th:field="*{password}" required/>
+    </div>
+    <button type="submit">Login</button>
+  </form>
+  <a class="signup-btn" th:href="@{/signup}">회원가입</a>
+</div>
 </body>
 </html>
