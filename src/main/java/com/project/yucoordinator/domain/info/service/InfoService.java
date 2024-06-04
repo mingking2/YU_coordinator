@@ -10,7 +10,6 @@ import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
 import java.io.IOException;
 import java.util.List;
@@ -33,28 +32,31 @@ public class InfoService {
                 if(!url.startsWith("http"))
                     url = givenUrl + url;
 
-
                 String substring = titleAll.substring(0, titleAll.length()-6);
-                if (flag == 0) {
-                    YUInfoEntity info = YUInfoEntity.builder()
-                            .title(substring)
-                            .url(url)
-                            .build();
-                    if(yuInfoRepository.findByTitle(info.getTitle()).isEmpty())
-                        yuInfoRepository.save(info);
-                } else if (flag == 1) {
-                    CSEInfoEntity info = CSEInfoEntity.builder()
-                            .title(substring)
-                            .url(url)
-                            .build();
-                    if(cseInfoRepository.findByTitle(info.getTitle()).isEmpty())
-                        cseInfoRepository.save(info);
-                }
+                selectRepo(substring, url, flag);
             }
         }
     }
 
-    public List<?> findbyAllInfos(int flag) {
+    public void selectRepo(String title, String url, int flag) {
+        if (flag == 0) {
+            YUInfoEntity info = YUInfoEntity.builder()
+                    .title(title)
+                    .url(url)
+                    .build();
+            if(yuInfoRepository.findByTitle(info.getTitle()).isEmpty())
+                yuInfoRepository.save(info);
+        } else if (flag == 1) {
+            CSEInfoEntity info = CSEInfoEntity.builder()
+                    .title(title)
+                    .url(url)
+                    .build();
+            if(cseInfoRepository.findByTitle(info.getTitle()).isEmpty())
+                cseInfoRepository.save(info);
+        }
+    }
+
+    public List<?> findAllInfos(int flag) {
         if (flag == 0)
             return yuInfoRepository.findAll();
         else
