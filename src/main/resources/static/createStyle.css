@@ -1,44 +1,66 @@
-/* 전체 페이지 스타일 */
 body {
-    font-family: Arial, sans-serif;
+    font-family: 'Arial', sans-serif;
     margin: 0;
     padding: 0;
-    background-color: #f7f7f7;
+    background-color: #f0f4f8;
+    color: #333;
 }
 
-/* 폼 스타일 */
 form {
-    max-width: 600px;
-    margin: 20px auto;
+    max-width: 500px;
+    margin: 50px auto;
     padding: 20px;
-    background-color: #fff;
-    border-radius: 5px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
 input[type="text"],
 textarea {
-    width: calc(100% - 20px);
-    margin-bottom: 10px;
+    width: calc(100% - 22px); /* 전체 폭에서 padding 고려 */
     padding: 10px;
+    margin-top: 8px;
+    margin-bottom: 20px;
     border: 1px solid #ccc;
-    border-radius: 5px;
-    font-size: 16px;
-}
-
-textarea {
-    height: 150px;
+    border-radius: 4px;
+    box-sizing: border-box; /* border와 padding을 너비에 포함 */
 }
 
 input[type="submit"] {
-    background-color: #4CAF50;
+    background-color: #007bff;
     color: white;
     padding: 10px 20px;
     border: none;
-    cursor: pointer;
     border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s ease;
 }
 
 input[type="submit"]:hover {
-    background-color: #45a049;
+    background-color: #0056b3;
+}
+
+label {
+    font-weight: bold;
+}
+
+textarea {
+    resize: vertical; /* 사용자가 세로 크기만 조절할 수 있게 함 */
+}
+
+.home-button {
+    display: inline-block;
+    background-color: #007bff;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    text-decoration: none;
+    font-size: 16px;
+    transition: background-color 0.3s ease;
+}
+
+.home-button:hover {
+    background-color: #0056b3;
 }

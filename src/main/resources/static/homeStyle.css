@@ -1,26 +1,35 @@
-/* homeStyle.css */
 body {
-    font-family: Arial, sans-serif;
-    background-color: #f0f0f0;
+    font-family: 'Arial', sans-serif;
     margin: 0;
     padding: 0;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    height: 100vh;
+    background-color: #f0f4f8;
+    color: #333;
+    position: relative; /* 로그아웃 버튼을 위한 기준점 */
 }
 
 h1 {
-    text-align: center;
-    margin-bottom: 20px;
+    color: #0056b3;
+    margin-top: 20px;
+    text-align: center; /* 제목을 가운데 정렬합니다 */
+}
+
+.main-buttons {
+    margin-top: 20px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    gap: 20px;
 }
 
 button {
-    background-color: #007bff;
-    color: #fff;
+    background-color: #007bff; /* Blue */
     border: none;
-    border-radius: 4px;
+    border-radius: 5px;
+    color: white;
     padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
     font-size: 16px;
     cursor: pointer;
     transition: background-color 0.3s ease;
@@ -30,14 +39,78 @@ button:hover {
     background-color: #0056b3;
 }
 
-button[type="submit"] {
-    background-color: #dc3545;
-    margin-top: 10px;
-    position: absolute;
-    top: 10px;
-    right: 10px;
+/* 로그아웃 버튼을 위한 스타일 */
+form {
+    position: absolute; /* 절대 위치 */
+    top: 20px; /* 상단에서 20px */
+    right: 20px; /* 우측에서 20px */
 }
 
-button[type="submit"]:hover {
-    background-color: #c82333;
+form button {
+    background-color: #dc3545; /* 빨간색 */
+    border-radius: 5px;
+    color: white;
+    padding: 5px 10px; /* 더 작은 패딩 */
+    font-size: 14px; /* 더 작은 글씨 크기 */
+}
+
+form button:hover {
+    background-color: #c82333; /* 진한 빨간색 */
+}
+
+.links-container {
+    display: flex;
+    justify-content: space-around;
+    width: 80%;
+    margin-top: 30px;
+    margin-bottom: 30px;
+    padding: 0 10%;
+}
+
+.link-list {
+    width: 45%;
+    background-color: white;
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+    border-radius: 5px;
+    padding: 20px;
+}
+
+.link-list h2 {
+    color: #007bff;
+    border-bottom: 2px solid #eee;
+    padding-bottom: 10px;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+th, td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: left;
+}
+
+th {
+    background-color: #007bff;
+    color: white;
+}
+
+tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
+
+tr:hover {
+    background-color: #ddd;
+}
+
+a {
+    color: #007bff;
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
 }
