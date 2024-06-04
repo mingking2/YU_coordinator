@@ -14,12 +14,14 @@
             <tr>
                 <th>index</th>
                 <th>title</th>
-                <th>date</th>
+                <th>createdDate</th>
+                <th>updatedDate</th>
             </tr>
             <tr th:each="board: ${boardList}">
                 <td th:text="${board.displayId}"></td>
                 <td><a th:href="@{|/board/${board.id}|}" th:text="${board.title}"></a></td>
                 <td th:text="*{#temporals.format(board.createdTime, 'yyyy-MM-dd HH:mm:ss')}"></td>
+                <td th:text="*{#temporals.format(board.updatedTime, 'yyyy-MM-dd HH:mm:ss')}"></td>
             </tr>
         </table>
     </div>
