@@ -14,6 +14,7 @@ import java.time.LocalDateTime;
 @Builder
 public class BoardDTO {
     private Long id;
+    private Long displayId;
     private String title;
     private String url;
     private String content;
@@ -33,7 +34,7 @@ public class BoardDTO {
     }
 
     public void setDisplayId(int i) {
-        id = (long) i;
+        displayId = (long) i;
     }
 
 }
