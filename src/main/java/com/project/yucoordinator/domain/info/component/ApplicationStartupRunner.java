@@ -4,7 +4,9 @@ import com.project.yucoordinator.domain.info.entity.CSEInfoEntity;
 import com.project.yucoordinator.domain.info.entity.YUInfoEntity;
 import com.project.yucoordinator.domain.info.service.InfoService;
 import jakarta.annotation.PostConstruct;
+import jakarta.annotation.PreDestroy;
 import lombok.RequiredArgsConstructor;
+import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
 
 import java.io.IOException;
@@ -19,21 +21,13 @@ public class ApplicationStartupRunner {
     private final InfoService infoService;
     
     @PostConstruct
+    @Scheduled(cron = "0 0 0/12 * * *")
     public void run() throws IOException {
+        infoService.deleteAllInfo();
+
         infoService.saveInfo(mainUrl, 0);
         infoService.saveInfo(cseUrl, 1);
 
-//        List<YUInfoEntity> infoEntityList1 = (List<YUInfoEntity>) infoService.findAllInfos(0);
-//        List<CSEInfoEntity> infoEntityList2 = (List<CSEInfoEntity>) infoService.findAllInfos(1);
-//
-//        for (YUInfoEntity info : infoEntityList1) {
-//            System.out.println("info1.getTitle() = " + info.getTitle());
-//            System.out.println("info1.getUrl() = " + info.getUrl());
-//        }
-//
-//        for (CSEInfoEntity info : infoEntityList2) {
-//            System.out.println("info2.getTitle() = " + info.getTitle());
-//            System.out.println("info2.getUrl() = " + info.getUrl());
-//        }
     }
+
 }
