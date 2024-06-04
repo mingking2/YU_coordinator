@@ -1,5 +1,6 @@
 package com.project.yucoordinator.domain.common;
 
+import com.project.yucoordinator.domain.info.dto.InfoDTO;
 import com.project.yucoordinator.domain.info.entity.CSEInfoEntity;
 import com.project.yucoordinator.domain.info.entity.YUInfoEntity;
 import com.project.yucoordinator.domain.info.service.InfoService;
@@ -16,10 +17,10 @@ public class HomeController {
     private final InfoService infoService;
     @GetMapping("/")
     public String home(Model model) {
-        List<YUInfoEntity> allYUInfoEntity = (List<YUInfoEntity>) infoService.findAllInfos(0);
-        List<CSEInfoEntity> allCSEInfoEntity = (List<CSEInfoEntity>) infoService.findAllInfos(1);
-        model.addAttribute("infoList", allYUInfoEntity);
-        model.addAttribute("CSEinfoList", allCSEInfoEntity);
+        List<InfoDTO> allYUInfo = infoService.findAllInfos(0);
+        List<InfoDTO> allCSEInfo = infoService.findAllInfos(1);
+        model.addAttribute("infoList", allYUInfo);
+        model.addAttribute("CSEinfoList", allCSEInfo);
         return "home";
     }
 }

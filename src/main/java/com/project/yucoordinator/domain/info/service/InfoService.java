@@ -1,5 +1,6 @@
 package com.project.yucoordinator.domain.info.service;
 
+import com.project.yucoordinator.domain.info.dto.InfoDTO;
 import com.project.yucoordinator.domain.info.entity.CSEInfoEntity;
 import com.project.yucoordinator.domain.info.entity.YUInfoEntity;
 import com.project.yucoordinator.domain.info.repository.CSEInfoRepository;
@@ -12,6 +13,7 @@ import org.jsoup.select.Elements;
 import org.springframework.stereotype.Service;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -56,16 +58,28 @@ public class InfoService {
         }
     }
 
-    public List<?> findAllInfos(int flag) {
-        if (flag == 0)
-            return yuInfoRepository.findAll();
-        else
-            return cseInfoRepository.findAll();
+    public List<InfoDTO> findAllInfos(int flag) {
+        List<InfoDTO> infoDTOS = new ArrayList<>();
+        if (flag == 0) {
+            List<YUInfoEntity> yuInfoList = yuInfoRepository.findAll();
+            for(YUInfoEntity yuInfo : yuInfoList) {
+                infoDTOS.add(InfoDTO.YuInfoDTO(yuInfo));
+            }
+        } else {
+            List<CSEInfoEntity> cseInfoList = cseInfoRepository.findAll();
+            for(CSEInfoEntity cseInfo : cseInfoList) {
+                infoDTOS.add(InfoDTO.CseInfoDTO(cseInfo));
+            }
+        }
+        return infoDTOS;
     }
 
     public void deleteAllInfo() {
         yuInfoRepository.deleteAll();
+        yuInfoRepository.resetAutoIncrement();
+
         cseInfoRepository.deleteAll();
+        cseInfoRepository.resetAutoIncrement();
     }
 
 }
