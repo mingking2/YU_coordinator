@@ -1,16 +1,12 @@
 package com.project.yucoordinator.domain.info.component;
 
-import com.project.yucoordinator.domain.info.entity.CSEInfoEntity;
-import com.project.yucoordinator.domain.info.entity.YUInfoEntity;
 import com.project.yucoordinator.domain.info.service.InfoService;
 import jakarta.annotation.PostConstruct;
-import jakarta.annotation.PreDestroy;
 import lombok.RequiredArgsConstructor;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
 
 import java.io.IOException;
-import java.util.List;
 
 @Component
 @RequiredArgsConstructor
