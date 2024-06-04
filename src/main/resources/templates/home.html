@@ -7,11 +7,41 @@
 </head>
 <body>
 <h1>YU coordinator</h1>
-<button onclick="createReq()">글작성</button>
-<button onclick="listReq()">글목록</button>
-<form th:action="@{/logout}" method="post">
-    <button type="submit">로그아웃</button>
-</form>
+<div class="main-buttons">
+    <button onclick="createReq()">글작성</button>
+    <button onclick="listReq()">글목록</button>
+    <form th:action="@{/logout}" method="post">
+        <button type="submit">로그아웃</button>
+    </form>
+</div>
+<div class="links-container">
+    <div class="link-list">
+        <h2>영대소식</h2>
+        <table>
+            <tr>
+                <th>id</th>
+                <th>title</th>
+            </tr>
+            <tr th:each="info: ${infoList}">
+                <td th:text="${info.id}"></td>
+                <td><a th:href="@{|${info.url}|}" th:text="${info.title}"></a></td>
+            </tr>
+        </table>
+    </div>
+    <div class="link-list">
+        <h2>컴퓨터공학과 공지사항</h2>
+        <table>
+            <tr>
+                <th>id</th>
+                <th>title</th>
+            </tr>
+            <tr th:each="info: ${CSEinfoList}">
+                <td th:text="${info.id}"></td>
+                <td><a th:href="@{|${info.url}|}" th:text="${info.title}"></a></td>
+            </tr>
+        </table>
+    </div>
+</div>
 <script type="application/javascript" src="../static/path.js"></script>
 </body>
 </html>
