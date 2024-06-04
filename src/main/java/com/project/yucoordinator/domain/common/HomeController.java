@@ -16,8 +16,8 @@ public class HomeController {
     private final InfoService infoService;
     @GetMapping("/")
     public String home(Model model) {
-        List<YUInfoEntity> allYUInfoEntity = (List<YUInfoEntity>) infoService.findbyAllInfos(0);
-        List<CSEInfoEntity> allCSEInfoEntity = (List<CSEInfoEntity>) infoService.findbyAllInfos(1);
+        List<YUInfoEntity> allYUInfoEntity = (List<YUInfoEntity>) infoService.findAllInfos(0);
+        List<CSEInfoEntity> allCSEInfoEntity = (List<CSEInfoEntity>) infoService.findAllInfos(1);
         model.addAttribute("infoList", allYUInfoEntity);
         model.addAttribute("CSEinfoList", allCSEInfoEntity);
         return "home";

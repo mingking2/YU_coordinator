@@ -53,8 +53,8 @@ public class BoardController {
     @GetMapping("/list")
     public String viewBoard(Model model, @AuthenticationPrincipal UserDetails userDetails) {
         List<BoardEntity> allBoardEntity = boardService.findAllBoards(userDetails);
-        List<YUInfoEntity> allYUInfoEntity = (List<YUInfoEntity>) infoService.findbyAllInfos(0);
-        List<CSEInfoEntity> allCSEInfoEntity = (List<CSEInfoEntity>) infoService.findbyAllInfos(1);
+        List<YUInfoEntity> allYUInfoEntity = (List<YUInfoEntity>) infoService.findAllInfos(0);
+        List<CSEInfoEntity> allCSEInfoEntity = (List<CSEInfoEntity>) infoService.findAllInfos(1);
         model.addAttribute("boardList", allBoardEntity);
         model.addAttribute("infoList", allYUInfoEntity);
         model.addAttribute("CSEinfoList", allCSEInfoEntity);
