@@ -1,5 +1,6 @@
 package com.project.yucoordinator.domain.board.service;
 
+import com.project.yucoordinator.domain.board.dto.BoardDTO;
 import com.project.yucoordinator.domain.board.entity.BoardEntity;
 import com.project.yucoordinator.domain.user.entity.UserEntity;
 import com.project.yucoordinator.domain.user.repository.UserRepository;
@@ -11,8 +12,8 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
@@ -21,7 +22,7 @@ public class BoardService {
     private final UserRepository userRepository;
 
     @Transactional
-    public BoardEntity createBoard(UserDetails userDetails, CreateReq req) {
+    public void createBoard(UserDetails userDetails, CreateReq req) {
         UserEntity userEntity = userRepository.findByUsername(userDetails.getUsername())
                 .orElseThrow(() -> new IllegalArgumentException("해당 멤버가 없습니다."));
 
@@ -32,21 +33,30 @@ public class BoardService {
                 .userEntity(userEntity)
                 .build();
 
-        return boardRepository.save(newBoardEntity);
+        boardRepository.save(newBoardEntity);
     }
 
     @Transactional(readOnly = true)
-    public List<BoardEntity> findAllBoards(UserDetails userDetails) {
-        return boardRepository.findByUserEntityUsername(userDetails.getUsername());
+    public List<BoardDTO> findAllBoards(UserDetails userDetails) {
+        int i = 1;
+        List<BoardDTO> boardDTOList = new ArrayList<>();
+        List<BoardEntity> boardEntity = boardRepository.findByUserEntityUsername(userDetails.getUsername());
+        for(BoardEntity board : boardEntity) {
+            BoardDTO boardDTO = BoardDTO.makeBoardDTO(board);
+            boardDTO.setDisplayId(i++);
+            boardDTOList.add(boardDTO);
+        }
+        return boardDTOList;
     }
 
     @Transactional(readOnly = true)
-    public Optional<BoardEntity> findBoardById(Long id) {
-        return boardRepository.findById(id);
+    public BoardDTO findBoardById(Long id) {
+        BoardEntity boardEntity = boardRepository.findById(id).orElseThrow();
+        return BoardDTO.makeBoardDTO(boardEntity);
     }
 
     @Transactional
-    public BoardEntity updateBoard(UserDetails userDetails, Long id, UpdateReq req) {
+    public void updateBoard(UserDetails userDetails, Long id, UpdateReq req) {
         UserEntity userEntity = userRepository.findByUsername(userDetails.getUsername())
                 .orElseThrow(() -> new IllegalArgumentException("해당 멤버가 없습니다."));
 
@@ -58,7 +68,7 @@ public class BoardService {
         }
 
         boardEntity.update(req.getTitle(), req.getContent(), req.getUrl());
-        return boardRepository.save(boardEntity);
+        boardRepository.save(boardEntity);
     }
 
     @Transactional

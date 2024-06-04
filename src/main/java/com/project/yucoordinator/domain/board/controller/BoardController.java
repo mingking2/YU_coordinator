@@ -1,11 +1,10 @@
 package com.project.yucoordinator.domain.board.controller;
 
+import com.project.yucoordinator.domain.board.dto.BoardDTO;
 import com.project.yucoordinator.domain.board.dto.CreateReq;
 import com.project.yucoordinator.domain.board.dto.UpdateReq;
-import com.project.yucoordinator.domain.board.entity.BoardEntity;
 import com.project.yucoordinator.domain.board.service.BoardService;
-import com.project.yucoordinator.domain.info.entity.CSEInfoEntity;
-import com.project.yucoordinator.domain.info.entity.YUInfoEntity;
+import com.project.yucoordinator.domain.info.dto.InfoDTO;
 import com.project.yucoordinator.domain.info.service.InfoService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
@@ -30,16 +29,14 @@ public class BoardController {
 
     @PostMapping("/create")
     public String createBoard(@AuthenticationPrincipal UserDetails userDetails, @ModelAttribute CreateReq req) {
-        System.out.println("req = " + req);
-        System.out.println(userDetails.getUsername());
         boardService.createBoard(userDetails, req);
         return "redirect:/";
     }
 
     @GetMapping("/update/{id}")
     public String updateForm(@PathVariable Long id, Model model) {
-        BoardEntity boardEntity = boardService.findBoardById(id).orElseThrow();
-        UpdateReq req = new UpdateReq(boardEntity.getId(), boardEntity.getTitle(), boardEntity.getContent(), boardEntity.getUrl());
+        BoardDTO boardDTO = boardService.findBoardById(id);
+        UpdateReq req = UpdateReq.makeUpdateReq(boardDTO);
         model.addAttribute("board", req);
         return "update";
     }
@@ -52,19 +49,19 @@ public class BoardController {
 
     @GetMapping("/list")
     public String viewBoard(Model model, @AuthenticationPrincipal UserDetails userDetails) {
-        List<BoardEntity> allBoardEntity = boardService.findAllBoards(userDetails);
-        List<YUInfoEntity> allYUInfoEntity = (List<YUInfoEntity>) infoService.findAllInfos(0);
-        List<CSEInfoEntity> allCSEInfoEntity = (List<CSEInfoEntity>) infoService.findAllInfos(1);
-        model.addAttribute("boardList", allBoardEntity);
-        model.addAttribute("infoList", allYUInfoEntity);
-        model.addAttribute("CSEinfoList", allCSEInfoEntity);
+        List<BoardDTO> allBoard = boardService.findAllBoards(userDetails);
+        List<InfoDTO> allYUInfo = infoService.findAllInfos(0);
+        List<InfoDTO> allCSEInfo = infoService.findAllInfos(1);
+        model.addAttribute("boardList", allBoard);
+        model.addAttribute("infoList", allYUInfo);
+        model.addAttribute("CSEinfoList", allCSEInfo);
         return "list";
     }
 
     @GetMapping("/{id}")
     public String findById(@PathVariable Long id, Model model) {
-        BoardEntity boardEntity = boardService.findBoardById(id).orElseThrow();
-        model.addAttribute("board", boardEntity);
+        BoardDTO boardDTO = boardService.findBoardById(id);
+        model.addAttribute("board", boardDTO);
         return "detail";
     }
 
