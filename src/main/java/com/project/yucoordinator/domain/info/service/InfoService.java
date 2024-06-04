@@ -63,4 +63,9 @@ public class InfoService {
             return cseInfoRepository.findAll();
     }
 
+    public void deleteAllInfo() {
+        yuInfoRepository.deleteAll();
+        cseInfoRepository.deleteAll();
+    }
+
 }
