@@ -24,7 +24,7 @@
             </tr>
             <tr th:each="info: ${infoList}">
                 <td th:text="${info.id}"></td>
-                <td><a th:href="@{|${info.url}|}" th:text="${info.title}"></a></td>
+                <td><a th:href="@{|${info.url}|}" th:text="${info.title}" target="_blank"></a></td>
             </tr>
         </table>
     </div>
@@ -37,7 +37,7 @@
             </tr>
             <tr th:each="info: ${CSEinfoList}">
                 <td th:text="${info.id}"></td>
-                <td><a th:href="@{|${info.url}|}" th:text="${info.title}"></a></td>
+                <td><a th:href="@{|${info.url}|}" th:text="${info.title}" target="_blank"></a></td>
             </tr>
         </table>
     </div>
