@@ -17,7 +17,7 @@ public class ApplicationStartupRunner {
     private final InfoService infoService;
 
 //    @PostConstruct
-    @Scheduled(initialDelay = 0L, fixedRate = 1000)
+    @Scheduled(initialDelay = 0L, fixedRate = 1000*3600)
     public void run() throws IOException {
         infoService.deleteAllInfo(); // 다지우지말고 업데이트해서 교체해보자
 
