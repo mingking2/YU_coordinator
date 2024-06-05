@@ -36,7 +36,7 @@ public class BoardService {
         boardRepository.save(newBoardEntity);
     }
 
-    @Transactional(readOnly = true)
+    @Transactional(readOnly = true) // TODO Paging바꾸기
     public List<BoardDTO> findAllBoards(UserDetails userDetails) {
         int i = 1;
         List<BoardDTO> boardDTOList = new ArrayList<>();

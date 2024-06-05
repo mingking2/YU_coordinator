@@ -13,6 +13,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @Getter
 @Builder
+//TODO discirminatorColumn -> JOIN TABLE
 public class CSEInfoEntity {
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;

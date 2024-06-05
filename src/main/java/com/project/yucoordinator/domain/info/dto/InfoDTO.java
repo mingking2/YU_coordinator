@@ -17,6 +17,7 @@ public class InfoDTO {
     private String url;
 
 
+    // TODO from, of이걸 찾아봐  convention
     public static InfoDTO YuInfoDTO(YUInfoEntity yuInfoEntity) {
         return InfoDTO.builder()
                 .id(yuInfoEntity.getId())

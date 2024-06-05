@@ -40,6 +40,7 @@ public class InfoService {
         }
     }
 
+    // TODO -> 더러웡
     public void selectRepo(String title, String url, int flag) {
         if (flag == 0) {
             YUInfoEntity info = YUInfoEntity.builder()

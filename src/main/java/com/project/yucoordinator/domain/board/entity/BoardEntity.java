@@ -22,7 +22,7 @@ public class BoardEntity extends BaseEntity {
     private String content;
     private String url;
 
-    @ManyToOne
+    @ManyToOne// TODO LAZY 니깐, -> 나중에 fetch join 때리는거까지
     @JoinColumn(name = "user_id")
     private UserEntity userEntity;
 
