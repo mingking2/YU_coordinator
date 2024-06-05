@@ -15,11 +15,11 @@ public class ApplicationStartupRunner {
     private static final String cseUrl = "https://cse.yu.ac.kr/cse/community/notice.do";
 
     private final InfoService infoService;
-    
-    @PostConstruct
-    @Scheduled(cron = "0 0 0/12 * * *")
+
+//    @PostConstruct
+    @Scheduled(initialDelay = 0L, fixedRate = 1000)
     public void run() throws IOException {
-        infoService.deleteAllInfo();
+        infoService.deleteAllInfo(); // 다지우지말고 업데이트해서 교체해보자
 
         infoService.saveInfo(mainUrl, 0);
         infoService.saveInfo(cseUrl, 1);
